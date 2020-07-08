@@ -2,9 +2,9 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [ surf-webkit2 ]
   pull_request:
-    branches: [ master ]
+    branches: [ surf-webkit2 ]
 
 jobs:
   build:
