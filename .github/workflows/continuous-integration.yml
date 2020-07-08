@@ -20,7 +20,7 @@ jobs:
       - name: Update
         run: pacman --noconfirm -Syu
       - name: Install TAR
-        if: ${{ matrix.container == artixlinux/base }}
+        if: ${{ matrix.container == 'artixlinux/base' }}
         run: pacman --noconfirm -S tar
       - uses: actions/checkout@v2
       - name: Install Build Dependencies
