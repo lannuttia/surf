@@ -17,9 +17,9 @@ jobs:
           - image: artixlinux/base
           - image: archlinux
     steps:
-      - uses: Update
+      - name: Update
         run: pacman --noconfirm -Syu
-      - uses: Install TAR
+      - name: Install TAR
         if: ${{ matrix.container == artixlinux/base }}
         run: pacman --noconfirm -S tar
       - uses: actions/checkout@v2
