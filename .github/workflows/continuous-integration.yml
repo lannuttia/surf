@@ -2,9 +2,9 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [ surf-webkit2 ]
   pull_request:
-    branches: [ master ]
+    branches: [ surf-webkit2 ]
 
 jobs:
   build:
@@ -14,30 +14,17 @@ jobs:
       fail-fast: false
       matrix:
         container:
-          - image: alpine:3
+          - image: artixlinux/base
           - image: archlinux
-          - image: debian:9
-            env:
-              DEBIAN_FRONTEND: noninteractive
-          - image: debian:10
-            env:
-              DEBIAN_FRONTEND: noninteractive
-          - image: elementary/docker:stable
-            env:
-              DEBIAN_FRONTEND: noninteractive
-          - image: kalilinux/kali-rolling
-            env:
-              DEBIAN_FRONTEND: noninteractive
-          - image: ubuntu:18.04
-            env:
-              DEBIAN_FRONTEND: noninteractive
-          - image: ubuntu:20.04
-            env:
-              DEBIAN_FRONTEND: noninteractive
     steps:
+      - name: Update
+        run: pacman --noconfirm -Syu
+      - name: Install TAR
+        if: ${{ matrix.container.image == 'artixlinux/base' }}
+        run: pacman --noconfirm -S tar
       - uses: actions/checkout@v2
       - name: Install Build Dependencies
-        run: pacman -Syu && pacman -S make gcc
+        run: pacman --noconfirm -S make gcc pkg-config xorg-server-devel webkit2gtk gcr
       - name: Build
         run: make
 
