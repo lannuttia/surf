@@ -24,7 +24,7 @@ jobs:
         run: pacman --noconfirm -S tar
       - uses: actions/checkout@v2
       - name: Install Build Dependencies
-        run: pacman --noconfirm -S make gcc pkg-config xorg-server-devel
+        run: pacman --noconfirm -S make gcc pkg-config xorg-server-devel webkit2gtk
       - name: Build
         run: make
 
