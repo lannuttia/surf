@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Build Dependencies
-        run: pacman -Syu && pacman -S make gcc
+        run: pacman --noconfirm -Syu && pacman --noconfirm -S make gcc
       - name: Build
         run: make
 
